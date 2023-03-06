@@ -1,0 +1,17 @@
+@charset "UTF-8";
+.categories {
+	
+	text-align:center;
+}
+
+.categories> .container {
+	margin-top: 70px;
+	
+}
+
+.categories> .container > a{
+	text-decoration: none;
+	color: #fff;
+	letter-spacing: -1px;
+	
+}

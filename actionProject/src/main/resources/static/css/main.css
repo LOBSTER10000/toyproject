@@ -1,0 +1,15 @@
+@charset "UTF-8";
+.card-pay {
+	text-align: center;
+	color: #114da5;
+	font-weight: 700;
+
+}
+
+.card-pay > a {
+	text-decoration: none;
+}
+
+.album > .container > h1{
+	margin-bottom: 30px;
+	}
