@@ -1,0 +1,49 @@
+@charset "UTF-8";
+#service1 {
+    letter-spacing: -2px;
+    font-size: 13px;
+}
+
+h5 {
+    font-size: 15px;
+}
+
+form > input {
+    width: 250px;
+    height: 50px;
+    margin-top: 10px;
+}
+
+h2 {
+    font-weight: 700;
+
+}
+
+.banner1 {
+   background: linear-gradient(to left, #114da5, #3366FF);
+    color:white;
+    letter-spacing: -2px;
+    font-size: 30px;
+    font-weight: 700;
+}
+
+#log-box {
+    border: 2px solid white;
+    width: 100px;
+    margin: auto;
+}
+
+#log-box > a {
+    color: white;
+    text-decoration: none;
+}
+
+#submit1 {
+    background : #114da5;
+    color : white;
+    letter-spacing: -1px;
+    border: none;
+    font-size: 23px;
+    font-weight: 700;
+    border-radius: 5px;
+}

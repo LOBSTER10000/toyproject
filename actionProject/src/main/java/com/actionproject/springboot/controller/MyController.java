@@ -14,4 +14,13 @@ public class MyController {
 
     @GetMapping("/login")
     public String go2(){return "login";}
+
+    @GetMapping("/join")
+    public String go3(){return "join";};
+
+    @GetMapping("/notice")
+    public String go4(){return "notice";}
+
+    @GetMapping("/qna")
+    public String go5(){return "qna";}
 }

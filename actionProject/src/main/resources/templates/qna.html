@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/layout.html}">
+<th:block layout:fragment="content">
+  <style>
+
+  </style>
+  <link rel="stylesheet" type="text/css" href="/css/qna/qna_main.css">
+
+  <div class="container">
+    <div class="row" style="height:800px; width:100%;">
+      <div class="col-md-2">
+        <div class="container box-side">
+          <div class="box-image">
+            <p>랍스타 옥션</p>
+            <P>고객 센터</P>
+          </div>
+          <div class="box-content">
+            <ul>
+              <li style="border-bottom: 1px solid #114da5;">
+                <a href="/notice" style="text-decoration: none; color: black;">공지사항</a></li>
+              <li><a href="/qna" style="text-decoration: none; color: black;">질의사항</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-10">
+
+        <div class="container-fruid">
+          <div class="row">
+            <i class="fa fa-home"></i>
+            <a href="/">홈</a>
+            <i class="fa fa-angle-right"></i>
+            <a href="/notice">고객센터</a>
+          </div>
+        </div>
+
+        <h1 style="letter-spacing: -2px; font-weight: 700;"> Q&A </h1>
+
+        <div class="realContent">
+          <form action="/search" method="post">
+            <!-- 검색 -->
+            <div class="searchWrap row">
+              <div class="dpTableC wp30 col-md-3">
+                <select name="field" id="field" class="form-control">
+                  <option value="SA">전체</option>
+                  <option value="SB">제목</option>
+                  <option value="SD">내용</option>
+                </select>
+              </div>
+              <div class="dpTableC p15 wp50 col-md-7">
+                <input type="text" name="searchTxt" id="searchTxt" class="form-control" placeholder="Search">
+              </div>
+              <div class="input-group-btn p15 wp20 col-md-2">
+                <button type="submit" class="btn-blue btn-lg fs15i wp100">검색</button>
+              </div>
+            </div>
+
+            <!-- 실제 게시판 -->
+            <div class="boardList">
+
+              <table id="table3">
+                <thead>
+                <tr>
+                  <th scope="col">번호</th>
+                  <th scope="col">제목</th>
+                  <th scope="col">등록자</th>
+                  <th scope="col">등록일</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                  <td>1</td>
+                  <td><a href="#">2</a></td>
+                  <td>3</td>
+                  <td>4</td>
+                </tr>
+                </tbody>
+              </table>
+
+            </div>
+            <!-- 페이징 -->
+            <div class="pager">
+
+              <nav aria-label="...">
+                <ul class="pagination">
+                  <li class="page-item disabled">
+                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+                  </li>
+                  <li class="page-item"><a class="page-link" href="#">1</a></li>
+                  <li class="page-item active" aria-current="page">
+                    <a class="page-link" href="#">2</a>
+                  </li>
+                  <li class="page-item"><a class="page-link" href="#">3</a></li>
+                  <li class="page-item">
+                    <a class="page-link" href="#">Next</a>
+                  </li>
+                </ul>
+              </nav>
+
+            </div>
+
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</th:block>
