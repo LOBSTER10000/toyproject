@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/layout.html}">
+<th:block layout:fragment="content">
+  <style>
+
+  </style>
+  <link rel="stylesheet" type="text/css" href="/css/login/myPage/myPage_main.css">
+
+  <div class="container">
+    <h1 style="font-weight: 700; margin-top:20px;">마이 페이지</h1>
+
+    <div class="container-fruid">
+      <div class="row" style="padding: 20px 15px; height: 145px;">
+
+
+        <div class="col-md-6 my-info">
+          <div class="inner-txt">
+              <span class="pull-left fs16i">
+                  <strong>***님 이머니</strong>
+              </span>
+              <span class="pull-right" style="margin-left: 145px;">0 원</span>
+          </div>
+          <div class="row local-menu" style="margin-top: 20px;">
+            <div class="col-md-4 l-menu1"><a href="#">충전</a></div>
+            <div class="col-md-4 l-menu2"><a href="#">출금</a></div>
+            <div class="col-md-4 l-menu3"><a href="#">회원등급 안내</a></div>
+          </div>
+        </div>
+
+
+        <div class="col-md-6" style="border: 1px solid #e0e0e0;">
+
+            <div class="row my-menu">
+
+          <div class="col-md-3">
+              <a href="#"><img src="images/login/myPage/수정.png"></a>
+          </div>
+          <div class="col-md-3">
+              <a href="#"><img src="images/login/myPage/장바구니.png"></a>
+          </div>
+          <div class="col-md-3">
+              <a href="#"><img src="images/login/myPage/본상품.png"></a>
+          </div>
+          <div class="col-md-3">
+              <a href="#"><img src="images/login/myPage/구매현황.png"></a>
+          </div>
+
+         </div>
+
+
+        </div>
+      </div>
+    </div>
+
+    <!-- 첫 div -->
+     <!-- 구매 현황 -->
+      <div class="container">
+          <h3 class="subTitle fs-md">
+              구매현황
+          </h3>
+
+          <div class="row mt50">
+              <table>
+                  <thead>
+                   <tr>
+                       <th></th>
+                       <th>구분</th>
+                       <th>물품번호</th>
+                       <th>이미지</th>
+                       <th>물품명</th>
+                       <th>구매가격</th>
+                       <th><a href="#">구매정보</a></th>
+                       <th>구매일자</th>
+                       <th>판매자</th>
+                       <th>입금 여부</th>
+                   </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                        <th>1</th>
+                        <th>2</th>
+                        <th>3</th>
+                        <th>4</th>
+                        <th>5</th>
+                        <th>6</th>
+                        <th><a href="#">7</a></th>
+                        <th>8</th>
+                        <th>9</th>
+                        <th>10</th>
+                    </tr>
+                  </tbody>
+              </table>
+          </div>
+
+      </div>
+
+      <!-- 판매 현황 -->
+      <div class="container">
+          <h3 class="subTitle fs-md">
+              판매현황
+          </h3>
+
+          <div class="row mt50">
+          <table>
+              <thead>
+              <tr>
+                  <th></th>
+                  <th>구분</th>
+                  <th>물품번호</th>
+                  <th>이미지</th>
+                  <th>물품명</th>
+                  <th>판매가격</th>
+                  <th><a href="#">판매정보</a></th>
+                  <th>판매일자</th>
+                  <th>구매자</th>
+                  <th>입금 여부</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr>
+                  <th>1</th>
+                  <th>2</th>
+                  <th>3</th>
+                  <th>4</th>
+                  <th>5</th>
+                  <th>6</th>
+                  <th><a href="#">7</a></th>
+                  <th>8</th>
+                  <th>9</th>
+                  <th>10</th>
+              </tr>
+              </tbody>
+          </table>
+          </div>
+
+      </div>
+
+
+  </div>
+
+</th:block>

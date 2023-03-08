@@ -1,0 +1,90 @@
+@charset "UTF-8";
+.my-menu{
+    text-align: center;
+    text-decoration: none;
+    color: white;
+    margin-top: 10px;
+
+}
+
+.my-menu > div {
+    border: 1px solid #40aa82;
+    border-radius: 100px;
+    height: 60px;
+    width: 60px;
+    margin: auto;
+
+}
+
+.col-md-3 > a > img{
+    margin-top: 15px;
+}
+
+.local-menu > div{
+   width: 130px;
+    text-align: center;
+    border: 1px solid #333333;
+    background: #fff;
+}
+.local-menu {
+    justify-content: center;
+}
+
+.inner-txt {
+    text-align: center;
+    margin-top: 10px;
+    letter-spacing: -1px;
+}
+
+.local-menu > div > a {
+    text-decoration: none;
+    color: #333333;
+}
+
+.l-menu2, .l-menu3 {
+    margin-left: 15px;
+}
+
+strong {
+    font-size : 24px;
+    font-weight: 700;
+}
+
+.pull-right {
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.my-info {
+    background : #f7f7f7;
+    border: 1px solid #e0e0e0;
+}
+
+.mt50 {
+    text-align: center;
+    overflow-x:scroll;
+}
+
+.fs-md {
+    padding-left: 24px;
+    font-weight: bold;
+    margin-bottom: 30px;
+    margin-top: 15px;
+    color: #337ab7;
+    text-decoration: none;
+}
+
+table {
+    border-top: 1px solid #111 !important;
+}
+
+table > thead > tr > th {
+    background: #f8f8f8;
+    color: #444;
+    font-weight: bold;
+    font-size: 15px;
+    text-align: center;
+    height: 45px;
+    border-left: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+}

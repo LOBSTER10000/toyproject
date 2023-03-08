@@ -23,4 +23,10 @@ public class MyController {
 
     @GetMapping("/qna")
     public String go5(){return "qna";}
+
+    @GetMapping("/view")
+    public String go6(){return "view";}
+
+    @GetMapping("/myPage")
+    public String go7(){return "/myPage";}
 }

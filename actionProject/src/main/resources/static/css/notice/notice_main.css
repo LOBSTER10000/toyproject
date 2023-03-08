@@ -77,3 +77,12 @@
 .pagination {
     justify-content: center;
 }
+
+.row > i {
+
+}
+
+.row > a {
+    text-decoration: none;
+    color: #2f4e7c;
+}

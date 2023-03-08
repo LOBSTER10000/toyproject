@@ -1,0 +1,23 @@
+@charset "UTF-8";
+.box-image{
+    background: #114da5;
+    color: white;
+    text-align: center;
+    letter-spacing: -2px;
+    font-weight: 700;
+    font-size: 23px;
+    margin-top: 90px;
+}
+
+.box-image > p {
+    margin-bottom: 0px;
+}
+
+.box-content > ul {
+    list-style: none;
+    border: 1px solid #114da5;
+}
+
+.box-content > ul > li {
+    letter-spacing: -1px;
+}
