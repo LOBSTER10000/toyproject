@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/layout.html}">
+<th:block layout:fragment="content">
+  <style>
+
+  </style>
+  <link rel="stylesheet" type="text/css" href="/css/main/mainView_main.css">
+
+  <div class="container">
+
+    <div class="row">
+      <h2 class="fs-md col-sm-6">
+        <strong>도기 수출입니다</strong>
+      </h2>
+    </div>
+
+
+   <!-- 사진라인 -->
+    <div id="subContentWrap">
+      <div class="container">
+        <div class="row">
+        <div class="product-detail-1 col-md-6">
+          <div id="imgBig" class="imgBig">
+            <p>
+              <img style="vertical-align: center" src="/images/main/도자기.jpg">
+            </p>
+          </div>
+
+
+        </div>
+
+
+        <!-- 텍스트 라인 -->
+        <div class="product-detail-2 col-md-6">
+          <div class="btnArea row mt30" style="margin-left: 15px;">
+            <h3>
+              <div class="row">
+                <div class="col-sm-2" style="font-size:14px;">현재가</div>
+                <div class="now-price col-sm-4">
+                  <span id="bidMoney">4,900,000</span>
+                </div>
+                <div class="text-right col-sm-6">
+                  <button class="btn btn-blue">
+                    <span id="lsRemain">남은시간 2일 4시간 37분</span>
+                  </button>
+                </div>
+              </div>
+            </h3>
+          </div>
+
+          <!-- 글라인 -->
+          <table style="margin-left: 15px;">
+            <tbody>
+              <tr>
+                <th>물품번호</th>
+                <td></td>
+              </tr>
+              <tr>
+                <th>경매기간</th>
+                <td></td>
+              </tr>
+              <tr>
+                <th>연장 경매</th>
+                <td></td>
+              </tr>
+              <tr>
+                <th>시작가</th>
+                <td></td>
+              </tr>
+              <tr>
+                <th>입찰단위</th>
+                <td></td>
+              </tr>
+              <tr>
+                <th>즉시구매</th>
+                <td></td>
+              </tr>
+              <tr>
+                <th>입찰수</th>
+                <td></td>
+              </tr>
+            </tbody>
+            <tbody>
+              <tr>
+                <th>판매자 ID</th>
+                <td></td>
+              </tr>
+            </tbody>
+            <tbody>
+              <tr>
+                <th>원산지</th>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="btnArea row mt30" style="margin-left: 15px;
+">
+            <p class="col-sm-4 btn-block-xs">
+              <a href="#" class="wp100">입찰하기</a>
+            </p>
+            <p class="col-sm-4 btn-block-xs">
+              <a href="#" class="wp110">장바구니</a>
+            </p>
+            <p class="col-sm-4 btn-block-xs">
+              <a href="/qna" calss="wp120">문의하기</a>
+            </p>
+          </div>
+
+        </div>
+      </div>
+
+      </div>
+
+    </div>
+  </div>
+
+</th:block>

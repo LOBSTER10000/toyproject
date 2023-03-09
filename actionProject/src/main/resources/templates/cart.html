@@ -1,10 +1,66 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/layout.html}">
+<th:block layout:fragment="content">
+    <style>
 
-</body>
-</html>
+    </style>
+    <link rel="stylesheet" type="text/css" href="/css/login/myPage/cart_main.css">
+
+    <div class="container">
+        <h1 style="font-weight: 700; margin-top:20px;">장바구니</h1>
+
+
+        <!-- 장바구니 현황 -->
+        <div class="container">
+            <h3 class="subTitle fs-md">
+                구매현황
+            </h3>
+
+            <div class="row mt50" style="text-align: center; margin-bottom: 20px;">
+                <table>
+                    <thead>
+                    <tr>
+                        <th></th>
+                        <th>번호</th>
+                        <th>구분</th>
+                        <th>이미지</th>
+                        <th>물품명</th>
+                        <th>입찰</th>
+                        <th><a href="#" style="text-decoration: none; color:black;">현재가</a></th>
+                        <th>마감일</th>
+                        <th>판매자</th>
+                        <th>관리</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                        <td>4</td>
+                        <td>5</td>
+                        <td>6</td>
+                        <td><a href="#">7</a></td>
+                        <td>8</td>
+                        <td>9</td>
+                        <td>
+                            <div class="row apply3">
+                                <div class="col-md-6">
+                                    <button>입찰</button>
+                                </div>
+                                <div class="col-md-6">
+                                    <button>삭제</button>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+
+
+
+    </div>
+</th:block>

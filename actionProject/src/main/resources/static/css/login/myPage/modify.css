@@ -1,0 +1,69 @@
+@charset "UTF-8";
+h2 {
+    padding-left: 24px;
+    font-weight: 700;
+    margin-bottom: 30px;
+    margin-top: 15px;
+}
+
+.mt40 > form > table {
+    width: 100%;
+    border-top: 1px solid #111 !important;
+}
+
+.mt40 > form > table > tbody > tr > th {
+    background : #f8f8f8;
+    color: #444444;
+    font-width: 700;
+    font-size: 15px;
+    text-align: center;
+    width: 200px;
+    padding: 7px 25px;
+    border-bottom: 1px solid #ddd;
+    height: 45px;
+    border-top : 1px solid black;
+}
+
+.mt40 > form > table > tbody > tr > td {
+    padding: 7px 25px;
+    font-size: 15px;
+    border-bottom: 1px solid #ddd;
+    border-left: 1px solid #ddd;
+    height: 45px;
+    border-top: 1px solid black;
+}
+
+.mt40 > form > table > tbody > tr > td > input {
+   height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.4286;
+    color: #555;
+    border: 1px solid #dbdbdb;
+}
+
+.confirm {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.confirm > input {
+    background: #114da5;
+    color: white;
+    width: 160px !important;
+    font-size: 16px;
+    letter-spacing: -1px;
+    height: 44px;
+    border: none;
+}
+
+.confirm > button {
+    margin-left : 15px;
+    background: #8e8e8e;
+    color: white !important;
+    width: 160px;
+    font-size: 16px;
+    letter-spacing: -1px;
+    height: 44px;
+    border: none;
+}
