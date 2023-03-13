@@ -4,7 +4,167 @@
   <style>
 
   </style>
+  <script src="//cdn.ckeditor.com/4.20.2/standard/ckeditor.js"></script>
   <link rel="stylesheet" type="text/css" href="/css/main/registration.css">
 
+  <div class="container">
+    <h2 style="margin-top: 25px;">
+      <strong style="font-weight: 700; line-height: 1.1;">온라인 물품등록</strong>
+    </h2>
 
+    <div class="row mt40">
+      <div class="btn-breadcrumb" style="margin-top: 10px; margin-bottom: 15px;">
+        <a id="itemForm1" class="btn btn-done">
+          <b>01.</b>
+          물품 및 경매 설정
+        </a>
+        <a id="itemForm2" class="btn btn-step">
+          <b>02.</b>
+          물품 등록 완료
+        </a>
+      </div>
+    </div>
+
+    <div class="row">
+      <h3 class="subTitle fs-md" style="margin-top:20px;">
+        <img src="images/서브타이틀.png" style="width:20px; height:35px; margin-bottom: 5px;">
+        <strong>물품 정보 / 경매 설정</strong>
+      </h3>
+    </div>
+
+    <div class="tableContent">
+      <form method="post" action="">
+        <table>
+          <tbody>
+            <tr>
+              <th class="essential">물품제목</th>
+              <td colspan="3">
+                <input tpye="text" id="itemName" name="itemName"
+                       placeholder="물품제목 입력" style="width:100%;">
+              </td>
+            </tr>
+
+             <tr>
+               <th class="essential">원산지</th>
+               <td colspan="3">
+                 <input type="text" id="itemFrom" name="itemFrom"
+                        placeholder="원산지를 입력" style="width:100%;">
+               </td>
+             </tr>
+
+            <tr>
+              <th class="essential">시작가</th>
+              <td colspan="3">
+                <div class="form-inline">
+                  <div class="form-group mr0m">
+                    <input type="text" id="itemStMoney" name="itemStMoney" class="w140" maxlength="9">
+                    원
+                  </div>
+                </div>
+              </td>
+            </tr>
+
+            <tr>
+            <th class="essential">입찰단위</th>
+            <td colspan="2">
+              <div class="form-inline">
+                <select name="itemBid" id="itemBid">
+                  <option value>선택하세요</option>
+                  <option value="1000">1,000원</option>
+                  <option value="5000">5,000원</option>
+                  <option value="10000">10,000원</option>
+                  <option value="50000">50,000원</option>
+                </select>
+              </div>
+            </td>
+            </tr>
+
+
+            <tr>
+              <th class="essential">경매기간</th>
+              <td colspan="5">
+                <div class="form-inline line-space">
+                  <div class="form-group mr20 line-space-in mr0m">
+                    <select name="toDate" id="toDate" class="w80">
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                      <option value="6">6</option>
+                      <option value="7">7</option>
+                      <option value="8">8</option>
+                      <option value="9">9</option>
+                      <option value="10">10</option>
+                    </select>
+                    <span>일 진행  *(하루 24시간을 기준으로 진행) </span>
+                  </div>
+                </div>
+              </td>
+            </tr>
+
+            <tr>
+              <th class="essential">즉시구매</th>
+              <td>
+                <label class="checkbox-inline p10 w60">
+                  <input type="radio" value="N" name="direct" id="checkNo">
+                  불가능
+                </label>
+                <label class="checkbox-inline">
+                  <input type="radio" value="Y" name="direct" id="checkYes" checked>
+                  가능
+                  <input type="text" id="directMoney" name="directMoney" maxlength="12">
+                  원
+                  <span style="color:red; font-weight: bold;">*(최소한 시작가보다는 가격이 높아야 등록이 가능합니다)</span>
+                </label>
+              </td>
+            </tr>
+
+             <tr>
+               <th class="essential">물품설명</th>
+               <td colspan="3">
+                  <textarea name="itemContent" id="editor">
+                  </textarea>
+               </td>
+             </tr>
+
+             <tr>
+               <th class="essential">이미지등록</th>
+               <td colspan="3">
+                 <input type="file"><br/>
+                 *원활한 물품 등록을 위한 이미지 파일 추천 규격<br/>
+                 파일 형식:jpg /사이즈: 가로폭 1000px (초과 시 자동 조정)/용량: 10MB 이하
+               </td>
+             </tr>
+          </tbody>
+
+        </table>
+        <div class="buttons">
+          <input type="submit" value="등록" id="enroll">
+          <button type="button" id="cancelBtn" onclick="history.back();">등록 취소</button>
+        </div>
+      </form>
+    </div>
+
+  </div>
+  <script>
+    $(function () {
+      CKEDITOR.replace('editor', {
+        filebrowserUploadUrl : '${pageContext.request.contextPath}/adm/fileupload.do'
+      });
+    });
+
+    $(function() {
+      $('#checkYes').on("click",function(){
+        $('#directMoney').css("background","white");
+        $('#directMoney').prop('readonly', false);
+      });
+    });
+
+    $(function(){
+      $('#checkNo').on("click",function(){
+        $('#directMoney').css("background","#f8f8f8");
+        $('#directMoney').prop('readonly', true);
+        $('#directMoney').val('');
+      });
+    });
+  </script>
 </th:block>
