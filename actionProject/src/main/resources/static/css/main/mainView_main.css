@@ -121,3 +121,54 @@ table > tbody > tr > td {
     font-size: 30px;
 }
 
+.submit2 > input {
+    background: #114da5;
+    text-decoration: none;
+    color: white;
+    line-height: 1.3333;
+    text-align: center;
+    padding: 10px;
+    border: none;
+}
+
+.submit2 > button {
+    background: #afafaf;
+    text-decoration: none;
+    color: white;
+    line-height: 1.3333;
+    text-align: center;
+    padding: 10px;
+    border : none;
+}
+
+.submit2 {
+    border-top : 1px solid black;
+    border-bottom: 1px solid black;
+    padding-top : 20px;
+    padding-bottom: 20px;
+}
+
+table > tbody > tr > td {
+    padding-left : 15px;
+}
+
+.modal-header {
+    padding: 15px;
+    background: #114da5;
+    color: #fff;
+}
+
+.modal-title {
+    font-size: 18px;
+}
+
+.modal-title > strong {
+    font-weight: 700;
+}
+
+.close {
+    background: url("../resources/static/images/main/취소.png");
+    opacity: 1;
+    height: 28px;
+    width: 28px;
+}

@@ -152,19 +152,18 @@
       });
     });
 
-    $(function() {
-      $('#checkYes').on("click",function(){
-        $('#directMoney').css("background","white");
-        $('#directMoney').prop('readonly', false);
-      });
+    let checkYes = document.querySelector("#checkYes");
+    checkYes.addEventListener("click", function(e){
+      document.querySelector('#directMoney').style.background = "white";
+      document.querySelector('#directMoney').readOnly = false;
     });
 
-    $(function(){
-      $('#checkNo').on("click",function(){
-        $('#directMoney').css("background","#f8f8f8");
-        $('#directMoney').prop('readonly', true);
-        $('#directMoney').val('');
-      });
+    let checkNo = document.querySelector('#checkNo');
+    checkNo.addEventListener("click", function(e) {
+      document.querySelector('#directMoney').style.background = "#f8f8f8";
+      document.querySelector('#directMoney').readOnly = true;
+      document.querySelector('#directMoney').value = "";
     });
+
   </script>
 </th:block>

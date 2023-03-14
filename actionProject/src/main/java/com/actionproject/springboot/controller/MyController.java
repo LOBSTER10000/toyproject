@@ -45,6 +45,9 @@ public class MyController {
     @GetMapping("/write")
     public String add(){return "/write";}
 
+    @GetMapping("/write2")
+    public String add2(){return "/write2";}
+
     @GetMapping("/update")
     public String update(){return "/update";}
 
