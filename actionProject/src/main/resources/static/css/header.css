@@ -9,19 +9,19 @@
 	background-color: #464646;
 }
 
-.header1 > .container >  ul {
+.menuBar {
 	display:flex;
 	list-style:none;
 	
 }
 
-.header1 > .container > ul > li {
+.menuBar > li {
 	margin-left: 10px;
 	margin-top: 10px;
 	letter-spacing:-1px;
 }
 
-.header1 > .container > ul > li > a{
+.menuBar > li > a{
 	text-decoration: none;
 	color: white;
 }
