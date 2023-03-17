@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.servlet.http.HttpSession;
 import javax.swing.*;
+import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
@@ -50,7 +51,7 @@ public class MyController {
         else {
             System.out.println("실패했습니다");
             mo.addAttribute("alert", "로그인에 실패했습니다");
-            mo.addAttribute("alert", "/login");
+            mo.addAttribute("url", "/login");
             return "/alert";
         }
     }
@@ -73,7 +74,10 @@ public class MyController {
     }
 
     @GetMapping("/notice")
-    public String notice(){return "notice";}
+    public String notice(View view, Model mo){
+        List<View> list = vr.findAll();
+        mo.addAttribute("list", list);
+        return "notice";}
 
     @GetMapping("/qna")
     public String qna(){return "qna";}
