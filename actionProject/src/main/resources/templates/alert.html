@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleag.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Insert title here</title>
+</head>
+<body>
+<script th:inline="javascript">
+  let aa = [[${alert}]]
+  let url = [[${url}]]
+
+  alert(aa);
+  location.href=url;
+</script>
+</body>
+</html>

@@ -91,8 +91,13 @@
 
         </div>
 
-
           </form>
+          <div th:if="${session.user} != null" style="text-align: center;">
+            <div th:if="${#strings.equals(session.user.userId, 'test3')}">
+            <button style="background: #114da5; width:100px; height: 40px; border: none;">
+              <a href="/write" style="text-decoration: none; color:white;">
+                글쓰기</a></button>
+          </div>
         </div>
       </div>
     </div>

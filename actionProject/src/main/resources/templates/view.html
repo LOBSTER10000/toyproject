@@ -47,7 +47,12 @@
           </tbody>
 
         </table>
-
+        <div th:if="${session.user} != null">
+          <div th:if="${#strings.equals(session.user.userId, 'test3')}">
+             <button>수정</button>
+             <button>삭제</button>
+          </div>
+          </div>
       </div>
 
 

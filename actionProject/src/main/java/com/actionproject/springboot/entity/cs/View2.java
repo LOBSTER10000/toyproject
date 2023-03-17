@@ -11,10 +11,12 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class View {
+public class View2 {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long noticeNumber;
+    private Long qnaNumber;
+
 
     @Column(length = 500)
     private String bbsHead;

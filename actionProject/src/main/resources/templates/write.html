@@ -29,21 +29,22 @@
       <div class="col-md-10">
         <h1 style="letter-spacing: -2px; font-weight: 700; margin-top: 20px;"> 공지사항 글쓰기 </h1>
 
-        <form method="post" action="">
+        <form method="post" action="/write">
+          <input type="hidden" name="userId" th:value="${user.userId}">
         <table>
 
           <tbody>
           <tr>
               <th>글제목</th>
               <td>
-                <input type="text" name="textHead" placeholder="제목을 입력해주세요" style="width: 100%;">
+                <input type="text" name="bbsHead" placeholder="제목을 입력해주세요" style="width: 100%;">
               </td>
             </tr>
 
             <tr>
               <th>글내용</th>
               <td>
-                <textarea name="textContent"  placeholder="내용을 입력해주세요" id="textContent">
+                <textarea name="bbsContent"  placeholder="내용을 입력해주세요" id="textContent">
 
                 </textarea>
               </td>
@@ -53,6 +54,7 @@
         </table>
 
           <div id="submitBtn">
+          <input type="hidden" name="bbsImages" value="0">
          <input type="submit" value="등록">
           <button type="button" id="cancelBtn" onclick="history.back();">취소</button>
           </div>
