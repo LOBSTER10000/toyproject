@@ -27,16 +27,16 @@
       </div>
 
       <div class="col-md-10">
-        <h1 style="letter-spacing: -2px; font-weight: 700; margin-top: 20px;"> 공지사항 수정 </h1>
+        <h1 style="letter-spacing: -2px; font-weight: 700; margin-top: 20px;"> 질의사항 수정 </h1>
 
         <form method="post" action="/update2">
-          <table th:object="${list2}">
+          <table>
 
             <tbody>
             <tr>
               <th>글제목</th>
               <td>
-                <input type="text" name="bbsHead" placeholder="제목을 입력해주세요" style="width: 100%;" th:value="*{bbsHead}">
+                <input type="text" name="bbsHead" placeholder="제목을 입력해주세요" style="width: 100%;" th:field="${list.bbsHead}">
               </td>
             </tr>
 
@@ -44,7 +44,7 @@
               <th>글내용</th>
               <td>
                 <textarea name="bbsContent"  placeholder="내용을 입력해주세요" id="textContent"
-                          th:text="*{bbsContent}" th:value="*{bbsContent}">
+                          th:field="${list.bbsContent}" style="width: 100%;">
 
                 </textarea>
               </td>
@@ -54,7 +54,8 @@
           </table>
 
           <div id="submitBtn">
-            <input type="hidden" name="qnaNumber" th:value="${list2.qnaNumber}">
+            <input type="hidden" name="qnaNumber" th:field="${list.qnaNumber}">
+            <input type="hidden" name="userId" th:field="${list.userId}">
             <input type="submit" value="수정">
             <button type="button" id="cancelBtn" onclick="history.back();">취소</button>
           </div>

@@ -50,11 +50,12 @@
                     </tbody>
 
                 </table>
-                <div class="row" style="margin-bottom: 30px;">
+                <div class="row" style="margin-bottom: 30px; justify-content:flex-end;">
                     <a href="qna" class="col-md-3 menuNo">목록</a>
-                <div th:if="${session.user} != null">
-                    <button><a th:href="@{/update2(qnaNumber=${list2.qnaNumber})}" class="col-md-3 updateNo">수정</a></button>
-                    <button><a th:href="@{/delete2(qnaNumber=${list2.qnaNumber})}" class="col-md-3 deleteNo" style="background: #8e8e8e;">삭제</a></button>
+                <div th:if="${session.user} != null and ${session.user.userId} eq ${list2.userId}" class="row">
+
+                    <a th:href="@{/update2(qnaNumber=${list2.qnaNumber})}" class="col-md-3 updateNo">수정</a>
+                    <a th:href="@{/delete2(qnaNumber=${list2.qnaNumber})}" class="col-md-3 deleteNo" style="background: #8e8e8e;">삭제</a>
                 </div>
             </div>
 

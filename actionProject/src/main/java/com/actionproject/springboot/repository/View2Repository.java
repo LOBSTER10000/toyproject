@@ -30,8 +30,8 @@ public interface View2Repository extends JpaRepository<View2, Long> {
 
     @Modifying
     @Transactional
-    @Query(value = "update view2 set bbs_head = :#{#view22.bbsHead}, bbs_content = :#{#view2.bbsContent} where qna_number = :#{#qnaNumber}", nativeQuery = true)
-    public int updateNo(@Param("view2") View2 view2, @Param("qnaNumber") Long qnaNumber);
+    @Query(value = "update view2 set bbs_head = :bbsHead, bbs_content = :bbsContent where qna_number = :qnaNumber", nativeQuery = true)
+    public int updateNo(@Param("bbsHead") String bbsHead, @Param("bbsContent") String bbsContent, @Param("qnaNumber") Long qnaNumber);
 
     @Modifying
     @Transactional

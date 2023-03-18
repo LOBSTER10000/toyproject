@@ -104,6 +104,7 @@ public class MyController {
         View2 list2 = vr2.selectOne(view2.getQnaNumber());
         mo.addAttribute("list2", list2);
         System.out.println(list2);
+        System.out.println("session user값" + user);
         return "view2";}
 
     @GetMapping("/myPage")
@@ -197,25 +198,30 @@ public class MyController {
         System.out.println("업데이트시 나오는 리스트 : " +  list);
         return "/update";}
 
-    @GetMapping("/update2")
-    public String update(View2 view2, Model mo){
-        View2 list2 = vr2.selectOne(view2.getQnaNumber());
-        mo.addAttribute("list2", list2);
-        System.out.println("업데이틋 나오는 리스트 : " + list2);
-        return "/update2";
-    }
-
     @PostMapping("/update")
-    public String update2(View view){
+    public String update3(View view){
+        System.out.println("view : " + view);
         int str = vr.updateNo(view, view.getNoticeNumber());
         System.out.println("업데이트 성공했나? :" + str);
         return "redirect:/notice";
     }
 
+    @GetMapping("/update2")
+    public String update2(View2 view2, Model mo){
+        View2 list = vr2.selectOne(view2.getQnaNumber());
+        if(list == null){
+            System.out.println("list is null");
+        }
+        mo.addAttribute("list", list);
+        System.out.println("업데이틋 나오는 리스트 : " + list);
+        return "/update2";
+    }
     @PostMapping("/update2")
-    public String update2(View2 view2){
-        int str = vr2.updateNo(view2, view2.getQnaNumber());
-        System.out.println("업데이트 성공했나? :" + str);
+    public String update4(View2 view2){
+        System.out.println("view2 " + view2);
+        int str = vr2.updateNo(view2.getBbsHead(), view2.getBbsContent(), view2.getQnaNumber());
+
+        System.out.println("update2 success? :" + str);
         return "redirect:/qna";
     }
 
