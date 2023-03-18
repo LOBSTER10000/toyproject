@@ -7,7 +7,7 @@
   <link rel="stylesheet" type="text/css" href="/css/notice/view/view_main.css">
 
   <div class="container">
-    <div class="row" style="height:800px; width:100%;">
+    <div class="row" style="width:100%;">
       <div class="col-md-2">
         <div class="container box-side">
           <div class="box-image">
@@ -25,34 +25,43 @@
       </div>
 
       <div class="col-md-10">
-        <h1 style="letter-spacing: -2px; font-weight: 700; margin-top: 20px;"> 공지사항 </h1>
+        <h1 style="letter-spacing: -2px; font-weight: 700; margin-top: 20px;"> 공지 사항 </h1>
 
-        <table>
+        <table th:object="${list2}" style="margin-top:20px;">
           <thead>
             <tr>
               <th>글 제목</th>
-              <td>1</td>
+              <td th:value="*{bbsHead}" th:text="*{bbsHead}">1</td>
             </tr>
             <tr>
               <th>등록일</th>
-              <td>1</td>
+              <td th:value="*{bbsDate}" th:text="*{bbsDate}">1</td>
             </tr>
           </thead>
           <tbody>
-            <tr>
+            <tr style="height: 515px;">
+              <th>글 내용
+              </th>
               <td>
-                <p>12345</p>
+                <p th:value="*{bbsContent}" th:text="*{bbsContent}" style="white-space: pre">12345</p>
               </td>
             </tr>
           </tbody>
 
         </table>
+
+        <div class="row" style="margin-bottom: 30px;">
+        <a href="/notice" class="col-md-3 menuNo">목록</a>
         <div th:if="${session.user} != null">
           <div th:if="${#strings.equals(session.user.userId, 'test3')}">
-             <button>수정</button>
-             <button>삭제</button>
+            <div th:object="${list2}" class="row" style="float: right; margin-bottom: 30px;">
+
+             <a th:href="@{/update(noticeNumber=*{noticeNumber})}" class="col-md-3 updateNo">수정</a>
+              <a th:href="@{/delete(noticeNumber=*{noticeNumber})}" class="col-md-3 deleteNo" style="background: #8e8e8e;">삭제</a>
+            </div>
           </div>
           </div>
+        </div>
       </div>
 
 

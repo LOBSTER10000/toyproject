@@ -60,11 +60,11 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                  <td>1</td>
-                  <td><a href="#">2</a></td>
-                  <td>3</td>
-                  <td>4</td>
+                <tr th:each="bbs2 : ${list}">
+                  <td th:text="${bbs2.qnaNumber}">1</td>
+                  <td><a th:href="@{/view2(qnaNumber=${bbs2.qnaNumber})}" th:text="${bbs2.bbsHead}" style="text-decoration: none; color: black;">2</a></td>
+                  <td th:text="${bbs2.userId}">3</td>
+                  <td th:text="${bbs2.bbsDate}">4</td>
                 </tr>
                 </tbody>
               </table>
@@ -95,7 +95,7 @@
           </form>
           <div th:if="${session.user} != null" style="text-align: center;">
             <button style="background: #114da5; width:100px; height: 40px; border: none;">
-              <a href="/write" style="text-decoration: none; color:white;">
+              <a href="/write2" style="text-decoration: none; color:white;">
                 글쓰기</a></button>
           </div>
         </div>

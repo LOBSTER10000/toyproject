@@ -27,29 +27,34 @@
             <div class="col-md-10">
                 <h1 style="letter-spacing: -2px; font-weight: 700; margin-top: 20px;"> 질의사항 </h1>
 
-                <table>
+                <table th:object="${list2}">
                     <thead>
                     <tr>
                         <th>글 제목</th>
-                        <td>1</td>
+                        <td th:value="*{bbsHead}" th:text="*{bbsHead}">1</td>
                     </tr>
                     <tr>
                         <th>등록일</th>
-                        <td>1</td>
+                        <td th:value="*{bbsDate}" th:text="*{bbsDate}">1</td>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
+                    <tr style="height: 515px;">
+                        <th>
+                            글 내용
+                        </th>
                         <td>
-                            <p>12345</p>
+                            <p th:value="*{bbsContent}" th:text="*{bbsContent}" style="white-space: pre">12345</p>
                         </td>
                     </tr>
                     </tbody>
 
                 </table>
+                <div class="row" style="margin-bottom: 30px;">
+                    <a href="qna" class="col-md-3 menuNo">목록</a>
                 <div th:if="${session.user} != null">
-                    <button>수정</button>
-                    <button>삭제</button>
+                    <button><a th:href="@{/update2(qnaNumber=${list2.qnaNumber})}" class="col-md-3 updateNo">수정</a></button>
+                    <button><a th:href="@{/delete2(qnaNumber=${list2.qnaNumber})}" class="col-md-3 deleteNo" style="background: #8e8e8e;">삭제</a></button>
                 </div>
             </div>
 

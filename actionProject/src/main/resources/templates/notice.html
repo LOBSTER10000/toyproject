@@ -50,7 +50,7 @@
             <!-- 실제 게시판 -->
         <div class="boardList">
 
-          <table id="table3" th:each="bbs : ${list}">
+          <table id="table3">
             <thead>
               <tr>
                 <th scope="col">번호</th>
@@ -60,9 +60,10 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
+              <tr th:each="bbs : ${list}">
                 <td th:text="${bbs.noticeNumber}">1</td>
-                <td ><a href="#" th:text="${bbs.bbsHead}">2</a></td>
+                <td><a th:href="@{/view(noticeNumber=${bbs.noticeNumber})}" th:text="${bbs.bbsHead}"
+                style="text-decoration: none; color: black;">2</a></td>
                 <td th:text="${bbs.bbsView}">3</td>
                 <td th:text="${bbs.bbsDate}">4</td>
               </tr>

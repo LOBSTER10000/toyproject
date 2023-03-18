@@ -51,7 +51,7 @@ public class MyController {
         else {
             System.out.println("실패했습니다");
             mo.addAttribute("alert", "로그인에 실패했습니다");
-            mo.addAttribute("url", "/login");
+            mo.addAttribute("alert", "/login");
             return "/alert";
         }
     }
@@ -75,25 +75,35 @@ public class MyController {
 
     @GetMapping("/notice")
     public String notice(View view, Model mo){
-        List<View> list = vr.findAll();
+        List<View> list = vr.selectAll();
         mo.addAttribute("list", list);
+
         return "notice";}
 
     @GetMapping("/qna")
-    public String qna(){return "qna";}
+    public String qna(View2 view, Model mo){
+        List<View2> list = vr2.selectAll();
+        mo.addAttribute("list", list);
+        return "qna";}
 
     @GetMapping("/view")
-    public String view(HttpSession session, Model mo){
+    public String view(HttpSession session, Model mo, View view){
         session.getAttribute("user");
         String user = String.valueOf(session.getAttribute("user"));
         mo.addAttribute("user", user);
+        View list2 = vr.selectOne(view.getNoticeNumber());
+        mo.addAttribute("list2", list2);
+        System.out.println(list2);
         return "view";}
 
     @GetMapping("/view2")
-    public String view2(HttpSession session, Model mo){
+    public String view2(HttpSession session, Model mo, View2 view2){
         session.getAttribute("user");
         String user = String.valueOf(session.getAttribute("user"));
         mo.addAttribute("user", user);
+        View2 list2 = vr2.selectOne(view2.getQnaNumber());
+        mo.addAttribute("list2", list2);
+        System.out.println(list2);
         return "view2";}
 
     @GetMapping("/myPage")
@@ -180,7 +190,48 @@ public class MyController {
         return "redirect:qna";
     }
     @GetMapping("/update")
-    public String update(){return "/update";}
+    public String update(View view, Model mo){
+        View list = vr.selectOne(view.getNoticeNumber());
+        mo.addAttribute("list", list);
+
+        System.out.println("업데이트시 나오는 리스트 : " +  list);
+        return "/update";}
+
+    @GetMapping("/update2")
+    public String update(View2 view2, Model mo){
+        View2 list2 = vr2.selectOne(view2.getQnaNumber());
+        mo.addAttribute("list2", list2);
+        System.out.println("업데이틋 나오는 리스트 : " + list2);
+        return "/update2";
+    }
+
+    @PostMapping("/update")
+    public String update2(View view){
+        int str = vr.updateNo(view, view.getNoticeNumber());
+        System.out.println("업데이트 성공했나? :" + str);
+        return "redirect:/notice";
+    }
+
+    @PostMapping("/update2")
+    public String update2(View2 view2){
+        int str = vr2.updateNo(view2, view2.getQnaNumber());
+        System.out.println("업데이트 성공했나? :" + str);
+        return "redirect:/qna";
+    }
+
+    @GetMapping("delete")
+    public String delete(View view){
+        int str = vr.deleteNo(view.getNoticeNumber());
+        System.out.println("삭제 성공? : " + str);
+        return "redirect:/notice";
+    }
+
+    @GetMapping("delete2")
+    public String delete(View2 view2){
+        int str = vr2.deleteNo(view2.getQnaNumber());
+        System.out.println("삭제 성공? : " + str);
+        return "redirect:/qna";
+    }
 
     @GetMapping("/mainView")
     public String mainView(){return "/mainView";}

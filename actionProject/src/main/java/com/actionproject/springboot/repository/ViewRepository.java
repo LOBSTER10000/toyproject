@@ -21,4 +21,22 @@ public interface ViewRepository extends JpaRepository<View, Long> {
             "values(:#{#view.userId}, :#{#view.bbsHead}, :#{#view.bbsContent}, :#{#view.bbsImages}, :#{#view.bbsView}, :#{#view.bbsDate})", nativeQuery = true)
     public void writeNo(@Param("view") View view);
 
+
+    @Transactional
+    @Query(value = "select * from view order by notice_number desc limit 0,10", nativeQuery = true)
+    public List<View> selectAll();
+
+    @Transactional
+    @Query(value = "select * from view where notice_number = :noticeNumber", nativeQuery = true)
+    public View selectOne(@Param("noticeNumber") Long noticeNumber);
+
+    @Modifying
+    @Transactional
+    @Query(value = "update view set bbs_head = :#{#view.bbsHead}, bbs_content = :#{#view.bbsContent} where notice_number = :#{#noticeNumber}", nativeQuery = true)
+    public int updateNo(@Param("view") View view, @Param("noticeNumber") Long noticeNumber);
+
+    @Modifying
+    @Transactional
+    @Query(value = "delete from view where notice_number = :noticeNumber", nativeQuery = true)
+    public int deleteNo(@Param("noticeNumber") Long noticeNumber);
 }
