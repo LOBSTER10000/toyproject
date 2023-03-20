@@ -1,5 +1,6 @@
 package com.actionproject.springboot.entity.cs;
 
+import com.actionproject.springboot.entity.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -27,6 +28,7 @@ public class View2 {
     private Date bbsDate = new Date();
     private int bbsView;
     private String bbsImages;
-
-    private String userId;
+    @ManyToOne
+    @JoinColumn(name = "userId")
+    private User user;
 }

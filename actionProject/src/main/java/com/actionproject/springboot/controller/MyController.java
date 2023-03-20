@@ -8,14 +8,13 @@ import com.actionproject.springboot.repository.UserRepository;
 import com.actionproject.springboot.repository.View2Repository;
 import com.actionproject.springboot.repository.ViewRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpSession;
-import javax.swing.*;
 import java.util.List;
 
 @Controller
@@ -25,6 +24,7 @@ public class MyController {
     private final UserRepository ur;
     private final ViewRepository vr;
     private final View2Repository vr2;
+
 
     @GetMapping("/")
     public String go(HttpSession httpSession){
@@ -51,7 +51,7 @@ public class MyController {
         else {
             System.out.println("실패했습니다");
             mo.addAttribute("alert", "로그인에 실패했습니다");
-            mo.addAttribute("alert", "/login");
+            mo.addAttribute("url", "/login");
             return "/alert";
         }
     }
@@ -135,10 +135,15 @@ public class MyController {
         }
     }
 
+
+
     @GetMapping("/modify")
     public String modify(HttpSession session, Model mo){
         if(session.getAttribute("user") != null){
             System.out.println("로그인이 되어있습니다");
+            User user = (User) session.getAttribute("user");
+            mo.addAttribute("user", user);
+            System.out.println(user);
             return "/modify";
         }
         else{
@@ -146,6 +151,13 @@ public class MyController {
             mo.addAttribute("url", "/login");
             return "/alert";
         }
+    }
+
+    @PostMapping("/modify")
+    public String modify2(User user){
+        int up = ur.updateUser(user.getUserPass(), user.getUserEmail(), user.getUserId());
+        System.out.println(up);
+        return "redirect:registration";
     }
 
     @GetMapping("/bbs")

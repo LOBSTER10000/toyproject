@@ -5,9 +5,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
-
+@Repository
 public interface UserRepository extends JpaRepository<User, Long > {
     @Modifying
     @Transactional
@@ -19,4 +20,9 @@ public interface UserRepository extends JpaRepository<User, Long > {
     @Transactional
     @Query(value = "select * from user where user_id = :userId and user_pass = :userPass", nativeQuery = true)
     public User selLogin(@Param("userId") String userId, @Param("userPass") String userPass);
+
+    @Modifying
+    @Transactional
+    @Query(value = "update user set user_pass = :userPass, user_email = :userEmail where user_id = :userId ", nativeQuery = true)
+    public int updateUser(@Param("userPass") String userPass, @Param("userEmail") String userEmail, @Param("userId") String userId);
 }

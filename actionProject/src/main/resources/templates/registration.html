@@ -33,13 +33,13 @@
     </div>
 
     <div class="tableContent">
-      <form method="post" action="">
+      <form method="post" action="registration" enctype="multipart/form-data">
         <table>
           <tbody>
             <tr>
               <th class="essential">물품제목</th>
               <td colspan="3">
-                <input tpye="text" id="itemName" name="itemName"
+                <input tpye="text" id="proHead" name="proHead"
                        placeholder="물품제목 입력" style="width:100%;">
               </td>
             </tr>
@@ -47,7 +47,7 @@
              <tr>
                <th class="essential">원산지</th>
                <td colspan="3">
-                 <input type="text" id="itemFrom" name="itemFrom"
+                 <input type="text" id="proFrom" name="proFrom"
                         placeholder="원산지를 입력" style="width:100%;">
                </td>
              </tr>
@@ -57,7 +57,7 @@
               <td colspan="3">
                 <div class="form-inline">
                   <div class="form-group mr0m">
-                    <input type="text" id="itemStMoney" name="itemStMoney" class="w140" maxlength="9">
+                    <input type="text" id="proStartMoney" name="proStartMoney" class="w140" maxlength="9">
                     원
                   </div>
                 </div>
@@ -68,7 +68,7 @@
             <th class="essential">입찰단위</th>
             <td colspan="2">
               <div class="form-inline">
-                <select name="itemBid" id="itemBid">
+                <select name="proUnitMoney" id="proUnitMoney">
                   <option value>선택하세요</option>
                   <option value="1000">1,000원</option>
                   <option value="5000">5,000원</option>
@@ -111,7 +111,7 @@
                 <label class="checkbox-inline">
                   <input type="radio" value="Y" name="direct" id="checkYes" checked>
                   가능
-                  <input type="text" id="directMoney" name="directMoney" maxlength="12">
+                  <input type="text" id="directMoney" name="proDirectMoney" maxlength="12">
                   원
                   <span style="color:red; font-weight: bold;">*(최소한 시작가보다는 가격이 높아야 등록이 가능합니다)</span>
                 </label>
@@ -121,7 +121,7 @@
              <tr>
                <th class="essential">물품설명</th>
                <td colspan="3">
-                  <textarea name="itemContent" id="editor">
+                  <textarea name="proContent" id="editor" style="width: 100%; min-height: 300px;">
                   </textarea>
                </td>
              </tr>
@@ -129,7 +129,7 @@
              <tr>
                <th class="essential">이미지등록</th>
                <td colspan="3">
-                 <input type="file"><br/>
+                 <input type="file" multiple="multiple" name="files" id="uploadBtn"><br/>
                  *원활한 물품 등록을 위한 이미지 파일 추천 규격<br/>
                  파일 형식:jpg /사이즈: 가로폭 1000px (초과 시 자동 조정)/용량: 10MB 이하
                </td>
@@ -146,11 +146,6 @@
 
   </div>
   <script>
-    $(function () {
-      CKEDITOR.replace('editor', {
-        filebrowserUploadUrl : '${pageContext.request.contextPath}/adm/fileupload.do'
-      });
-    });
 
     let checkYes = document.querySelector("#checkYes");
     checkYes.addEventListener("click", function(e){
@@ -164,6 +159,7 @@
       document.querySelector('#directMoney').readOnly = true;
       document.querySelector('#directMoney').value = "";
     });
+
 
   </script>
 </th:block>
