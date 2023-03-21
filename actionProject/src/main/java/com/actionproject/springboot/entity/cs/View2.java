@@ -28,7 +28,9 @@ public class View2 {
     private Date bbsDate = new Date();
     private int bbsView;
     private String bbsImages;
+
+    private String userId;
     @ManyToOne
-    @JoinColumn(name = "userId")
+    @JoinColumn(name = "user_number")
     private User user;
 }

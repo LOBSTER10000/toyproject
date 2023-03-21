@@ -55,7 +55,7 @@
 
           <div id="submitBtn">
           <input type="hidden" name="bbsImages" value="0">
-         <input type="submit" value="등록">
+         <input type="submit" value="등록" id="enroll">
           <button type="button" id="cancelBtn" onclick="history.back();">취소</button>
           </div>
         </form>
@@ -76,5 +76,15 @@
         filebrowserUploadUrl : '${pageContext.request.contextPath}/adm/fileupload.do'
       });
     });
+
+    let enroll = document.querySelector('#enroll');
+    let bbsHead = document.querySelector('[name=bbsHead]');
+    enroll.addEventListener("click", function(e){
+      if(bbsHead.value.trim() === "") {
+        alert('입력이 안된 사항이 있습니다.');
+        e.preventDefault();
+      }
+    });
+
   </script>
 </th:block>

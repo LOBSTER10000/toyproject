@@ -17,10 +17,13 @@ public class Registration2 {
     private Long imgNumber;
 
     @ManyToOne
-    @JoinColumn(name = "pro_number")
-    private Registration Registration;
+    @JoinColumn(name = "proNumber") // Registration 클래스의 proNumber를 참조하는 외래키
+    private Registration registration;
 
     private String fileName;
 
     private String filePath;
+
+    private Long numbers;
+
 }

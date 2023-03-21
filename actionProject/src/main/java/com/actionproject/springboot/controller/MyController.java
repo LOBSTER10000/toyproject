@@ -1,21 +1,30 @@
 package com.actionproject.springboot.controller;
 
 
+import com.actionproject.springboot.entity.Registration;
+import com.actionproject.springboot.entity.Registration2;
 import com.actionproject.springboot.entity.User;
 import com.actionproject.springboot.entity.cs.View;
 import com.actionproject.springboot.entity.cs.View2;
-import com.actionproject.springboot.repository.UserRepository;
-import com.actionproject.springboot.repository.View2Repository;
-import com.actionproject.springboot.repository.ViewRepository;
+import com.actionproject.springboot.repository.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.persistence.EntityManager;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Controller
 @RequiredArgsConstructor
@@ -25,7 +34,11 @@ public class MyController {
     private final ViewRepository vr;
     private final View2Repository vr2;
 
+    private final RegistrationRepository rg;
 
+    private final Registration2Repository r2g;
+
+    private final EntityManager entityManager;
     @GetMapping("/")
     public String go(HttpSession httpSession){
         httpSession.getAttribute("user");
@@ -33,7 +46,9 @@ public class MyController {
     }
 
     @GetMapping("/index2")
-    public String index2(){return "index2";}
+    public String index2(){
+
+        return "index2";}
     @GetMapping("/login")
     public String login(){return "login";}
 
@@ -126,6 +141,8 @@ public class MyController {
     public String registration(HttpSession session, Model mo){
         if(session.getAttribute("user") != null){
             System.out.println("로그인이 되어있습니다");
+            User user = (User) session.getAttribute("user");
+            mo.addAttribute("user", user);
             return "/registration";
         }
         else{
@@ -135,6 +152,60 @@ public class MyController {
         }
     }
 
+    @PostMapping("/registration")
+    public String registration2(Registration re, @RequestParam("files") MultipartFile[] files, Registration2 re2, HttpServletResponse response) {
+        List<MultipartFile> imageFiles = new ArrayList<>();
+        int fileCount = 0; // 업로드한 파일
+
+        int up = rg.insertRe(re.getProHead(), re.getProFrom(), re.getProStartMoney(), re.getProUnitMoney(), re.getProDirectMoney(), re.getProPresentMoney() ,re.getProContent(), re.getProDate(), re.getImagesExist(), re.getUserId());
+        System.out.println(re);
+        System.out.println(up);
+
+        for (MultipartFile file : files) {
+            if (file.getContentType().startsWith("image/")) {
+                if (fileCount >= 3) { // 이미 3개 이상 업로드한 경우
+                    response.setContentType("text/html; charset=UTF-8"); // 응답 형식 지정
+                    PrintWriter out;
+                    try {
+                        out = response.getWriter();
+                        out.println("<script>alert('이미지 3개 이상 업로드는 불가합니다.');</script>"); // 경고창 출력
+                        out.flush();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    return "redirect:index2"; // 페이지 이동하지 않음
+                }
+                imageFiles.add(file);
+                fileCount++;
+            }
+        }
+
+        for (MultipartFile imageFile : imageFiles) {
+            String fileName = imageFile.getOriginalFilename(); // 파일 이름 추출
+            String uploadPath = "src/main/resources/static/images/upload/"; // 업로드 디렉토리 경로
+            String filePath = uploadPath + fileName; // 저장될 파일 경로
+            String uuid = UUID.randomUUID().toString();
+            String realPath = uploadPath + uuid +".jpg";
+            System.out.println(fileName);
+            System.out.println(filePath);
+            System.out.println(realPath);
+
+            // 파일 저장
+            try (OutputStream os = new FileOutputStream(realPath)) {
+                os.write(imageFile.getBytes());
+                re2 = new Registration2();
+                re2.setFileName(uuid);
+                re2.setFilePath(realPath);
+                Long str = re.getProNumber();
+                System.out.println("proNumber is + " + str);
+                r2g.save(re2);
+            } catch (IOException e) {
+                // 파일 저장 실패 시 예외 처리
+                e.printStackTrace();
+            }
+        }
+        return "redirect:index2";
+    }
 
 
     @GetMapping("/modify")
@@ -187,6 +258,7 @@ public class MyController {
     @PostMapping("/write")
     public String add2(View view){
         vr.writeNo(view);
+
         return "redirect:notice";
     }
 
@@ -200,6 +272,7 @@ public class MyController {
     @PostMapping("/write2")
     public String add4(View2 view2){
         vr2.writeNo2(view2);
+
         return "redirect:qna";
     }
     @GetMapping("/update")

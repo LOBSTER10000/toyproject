@@ -69,7 +69,7 @@
             <td colspan="2">
               <div class="form-inline">
                 <select name="proUnitMoney" id="proUnitMoney">
-                  <option value>선택하세요</option>
+                  <option>선택하세요</option>
                   <option value="1000">1,000원</option>
                   <option value="5000">5,000원</option>
                   <option value="10000">10,000원</option>
@@ -131,13 +131,15 @@
                <td colspan="3">
                  <input type="file" multiple="multiple" name="files" id="uploadBtn"><br/>
                  *원활한 물품 등록을 위한 이미지 파일 추천 규격<br/>
-                 파일 형식:jpg /사이즈: 가로폭 1000px (초과 시 자동 조정)/용량: 10MB 이하
+                 파일 형식:jpg /사이즈: 가로폭 1000px (초과 시 자동 조정)/용량: 10MB 이하<br/>
+                 이미지는 총 3개까지만 등록이 가능합니다.
                </td>
              </tr>
           </tbody>
 
         </table>
         <div class="buttons">
+          <input type="hidden" th:value="${user.userId}" name="userId">
           <input type="submit" value="등록" id="enroll">
           <button type="button" id="cancelBtn" onclick="history.back();">등록 취소</button>
         </div>
@@ -146,11 +148,13 @@
 
   </div>
   <script>
-
+    let directMoney = document.querySelector('#directMoney');
+    let proDirectMoney = document.querySelector('[name=proDirectMoney]');
     let checkYes = document.querySelector("#checkYes");
     checkYes.addEventListener("click", function(e){
       document.querySelector('#directMoney').style.background = "white";
       document.querySelector('#directMoney').readOnly = false;
+      proDirectMoney.value = directMoney.value;
     });
 
     let checkNo = document.querySelector('#checkNo');
@@ -158,8 +162,20 @@
       document.querySelector('#directMoney').style.background = "#f8f8f8";
       document.querySelector('#directMoney').readOnly = true;
       document.querySelector('#directMoney').value = "";
+      proDirectMoney.value = 0;
     });
 
+    let enroll = document.querySelector('#enroll');
+    enroll.addEventListener("click", function(e){
+      let result = confirm("등록 시 수정이 불가하오니 신중하게 등록하시기 바랍니다.");
+      if(result == false){
+        alert("취소 되었습니다.");
+        e.preventDefault(); // 이벤트 등록을 막는 코드
+      }
+      else {
+        alert("등록 되었습니다");
+      }
+    });
 
   </script>
 </th:block>

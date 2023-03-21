@@ -27,7 +27,8 @@ public class View {
     private int bbsView;
     private String bbsImages;
 
+    private String userId;
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_number")
     private User user;
 }

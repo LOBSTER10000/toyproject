@@ -28,8 +28,13 @@ public class Registration {
 
     private String imagesExist; // 이미지 존재 개수
 
+    private String userId;
+
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_number")
     private User user;
 
+    public Long getProNumber(){
+        return proNumber;
+    }
 }
