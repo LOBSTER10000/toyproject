@@ -10,6 +10,8 @@ import org.springframework.stereotype.Repository;
 import javax.transaction.Transactional;
 @Repository
 public interface UserRepository extends JpaRepository<User, Long > {
+
+    User findByUserId(String userId);
     @Modifying
     @Transactional
     @Query(value = "insert into user(user_id, user_email, user_pass, user_zip, user_add) " +

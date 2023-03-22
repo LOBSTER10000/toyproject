@@ -6,11 +6,11 @@
   </style>
   <link rel="stylesheet" type="text/css" href="/css/main/mainView_main.css">
 
-  <div class="container" style="margin-top: 15px;">
+  <div class="container" style="margin-top: 15px;" th:object="${re}">
 
     <div class="row" style="border-bottom: 1px solid black; margin-bottom: 35px; margin-top:35px;">
       <h2 class="fs-md col-sm-6">
-        <strong>도기 수출입니다</strong>
+        <strong>[[${re.proHead}]]</strong>
       </h2>
     </div>
 
@@ -37,7 +37,7 @@
               <div class="row">
                 <div class="col-sm-2" style="font-size:16px; font-weight: 700; width: 72px; margin-top: 15px; text-align: center;">현재가</div>
                 <div class="now-price col-sm-4">
-                  <span id="bidMoney">4,900,000</span>
+                  <span id="bidMoney">[[${re.proStartMoney}]]원</span>
                 </div>
                 <div class="text-right col-sm-6">
                   <button class="btn btn-blue">
@@ -53,23 +53,19 @@
             <tbody>
               <tr>
                 <th>물품번호</th>
-                <td>1</td>
+                <td>[[${re.proNumber}]]</td>
               </tr>
               <tr>
                 <th>경매기간</th>
                 <td>1</td>
               </tr>
               <tr>
-                <th>연장 경매</th>
-                <td>1</td>
-              </tr>
-              <tr>
                 <th>시작가</th>
-                <td>1</td>
+                <td>[[${re.proStartMoney}]]</td>
               </tr>
               <tr>
                 <th>입찰단위</th>
-                <td>1</td>
+                <td>[[${re.proUnitMoney}]]</td>
               </tr>
               <tr>
                 <th>즉시구매</th>
@@ -83,13 +79,13 @@
             <tbody>
               <tr>
                 <th>판매자 ID</th>
-                <td>1</td>
+                <td>[[${re.userId}]]</td>
               </tr>
             </tbody>
             <tbody>
               <tr>
                 <th>원산지</th>
-                <td>1</td>
+                <td>[[${re.proFrom}]]</td>
               </tr>
             </tbody>
           </table>
@@ -129,7 +125,7 @@
     </div>
 
     <div class="content" style="margin-bottom: 30px;">
-      <div class="content-text">dd</div>
+      <div class="content-text">[[${re.proContent}]]</div>
       <div class="content-pic">33</div>
     </div>
   </div>
@@ -150,14 +146,14 @@
           <div class="container">
           <h4 class="fs18i">
             <strong>
-              <span id="ItemName">도기 수출입니다</span>
+              <span id="ItemName" th:text="${re.proHead}"></span>
             </strong>
           </h4>
           <div class="tableDefault">
             <table>
               <tr>
                 <th>판매자</th>
-                <td>1</td>
+                <td th:text="${re.userId}"></td>
               </tr>
               <tr>
                 <th>남은기간</th>
@@ -165,12 +161,12 @@
               </tr>
               <tr>
                 <th>입찰단위</th>
-                <td>1,000</td>
+                <td th:text="${re.proUnitMoney}"></td>
               </tr>
               <tr>
                 <th>현재가</th>
                 <td>
-                  <strong>130,000원</strong>
+                  <strong th:text="${re.proStartMoney}+'원'"></strong>
                 </td>
               </tr>
               <tr>
@@ -182,7 +178,7 @@
               <tr>
                 <th>총 구매금액</th>
                 <td>
-                  <strong>130,000원</strong>
+                  <strong th:text="${re.proStartMoney}+'원'"></strong>
                 </td>
               </tr>
             </table>

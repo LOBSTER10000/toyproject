@@ -13,9 +13,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.FileOutputStream;
@@ -38,16 +40,23 @@ public class MyController {
 
     private final Registration2Repository r2g;
 
-    private final EntityManager entityManager;
+    @PersistenceContext
+    private final EntityManager em;
     @GetMapping("/")
-    public String go(HttpSession httpSession){
+    public String go(HttpSession httpSession, Model mo){
+        List<Registration> re = rg.selectRe();
+        mo.addAttribute("re", re);
+
         httpSession.getAttribute("user");
+
         return "index2";
     }
 
     @GetMapping("/index2")
-    public String index2(){
-
+    public String index2(HttpSession httpSession, Model mo){
+        List<Registration> re = rg.selectRe();
+        mo.addAttribute("re", re);
+        httpSession.getAttribute("user");
         return "index2";}
     @GetMapping("/login")
     public String login(){return "login";}
@@ -83,7 +92,15 @@ public class MyController {
     public String join(){return "join";};
 
     @PostMapping("/join")
-    public String join2(User user){
+    public String join2(User user, HttpServletResponse response) throws IOException {
+        // 이미 존재하는 아이디인지 검사
+        User existingUser = ur.findByUserId(user.getUserId());
+        if(existingUser != null) { // 존재하는 경우
+            PrintWriter out = response.getWriter();
+            out.println("<script>alert('중복된 아이디로 가입할 수 없습니다.')</script>");
+            return "redirect:join";
+        }
+        // 존재하지 않는 경우 새로운 회원 정보 추가
         ur.insertJoin(user.getUserId(), user.getUserEmail(), user.getUserPass(), user.getUserZip(), user.getUserAdd());
         return "redirect:index2";
     }
@@ -232,7 +249,11 @@ public class MyController {
     }
 
     @GetMapping("/bbs")
-    public String bbs(){return "/bbs";}
+    public String bbs(HttpSession httpSession, Model mo){
+        List<Registration> re = rg.selectRe();
+        mo.addAttribute("re", re);
+        httpSession.getAttribute("user");
+        return "/bbs";}
 
     @GetMapping("/cart")
     public String cart(HttpSession session, Model mo){
@@ -325,5 +346,21 @@ public class MyController {
     }
 
     @GetMapping("/mainView")
-    public String mainView(){return "/mainView";}
+    public String mainView(Registration re1, Model mo){
+        Registration re = rg.selectReOne(re1.getProNumber());
+        mo.addAttribute("re", re);
+        return "/mainView";}
+
+    @PostMapping("/checkDuplicateId")
+    @ResponseBody
+    public String checkDuplicateId(@RequestParam("userId") String userId) {
+        User existingUser = ur.findByUserId(userId);
+        if(existingUser != null) {
+            return "exist";
+        } else {
+            return "not exist";
+        }
+    }
 }
+
+

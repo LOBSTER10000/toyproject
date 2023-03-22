@@ -21,13 +21,27 @@
         <form method="post" action="/join">
         <h2 style="margin-top: 10px;">랍스타 회원가입</h2>
         <h5>하나의 아이디로 랍스타의 다양한 서비스를 이용해보세요</h5>
+            <div class="form-group d-flex justify-content-between align-items-center mb-2">
+        <input name="userId" id="idText" type="text" placeholder="아이디를 입력하세요" style="width: 40%; height: 50px">
+            <button type="button" onclick="checkDuplicateId()" style="border: none; background: #114da5; width: 18%; height: 50px; color: white; border-radius: 5px;">중복 검사</button>
+            <span id="idCheckMessage" style="color:red; width: 40%;"></span>
+        </div>
+            <div class="form-group mb-2" style="width: 59%;">
+                <input name="userEmail" type="email" placeholder="이메일을 입력하세요" style="width: 100%; height: 50px;">
+            </div>
 
-        <input name="userId" id="idText" type="text" placeholder="아이디를 입력하세요">
-            <span id="idError" style="color:red;"></span><br/>
-        <input name="userEmail" type="email" placeholder="이메일을 입력하세요"><br/>
-        <input name="userPass" id="passText" type="password" placeholder="패스워드를 입력하세요"><br/>
-        <input id="passConfirm" type="password" placeholder="패스워드 확인"><br/>
-            <span id="passError" style="color:red;"></span>
+            <div class="form-group mb-2" style="width: 59%;">
+                <input name="userPass" id="passText" type="password" placeholder="패스워드를 입력하세요" style="width: 100%; height: 50px;">
+            </div>
+
+            <div class="form-group mb-2 d-flex align-items-center justify-content-between">
+                <input id="passConfirm" type="password" placeholder="패스워드 확인" style="width: 59%; height: 50px;">
+                <span id="passError" style="color:red; width: 40%;"></span>
+            </div>
+
+
+
+
             <div class="form-group">
         <label> 우편 코드 </label>
         <input name="userZip" type="text" class="form-control" placeholder="우편 코드">
@@ -66,6 +80,20 @@
             }
         });
 
-
+        function checkDuplicateId() {
+            let userId = $("[name='userId']").val();
+            $.ajax({
+                url: "/checkDuplicateId",
+                type: "POST",
+                data: { userId: userId },
+                success: function(response) {
+                    if(response == "exist") {
+                        $('#idCheckMessage').text("이미 사용중인 아이디입니다.");
+                    } else {
+                        $('#idCheckMessage').text("사용 가능한 아이디입니다.");
+                    }
+                }
+            });
+        }
     </script>
 </th:block>
