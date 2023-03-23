@@ -86,3 +86,19 @@
     text-decoration: none;
     color: #2f4e7c;
 }
+
+#table3 > tbody > tr > td:nth-child(2) {
+    max-width: 320px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+#table3 td {
+    width: 25%; /* 현재 td 너비를 25%로 고정합니다. */
+}
+
+#table3 td {
+    width: 150px; /* 현재 td 너비를 150px로 고정합니다. */
+    height: 50px; /* 현재 td 높이를 50px로 고정합니다. */
+}

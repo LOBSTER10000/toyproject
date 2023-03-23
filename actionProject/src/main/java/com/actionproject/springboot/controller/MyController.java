@@ -8,6 +8,10 @@ import com.actionproject.springboot.entity.cs.View;
 import com.actionproject.springboot.entity.cs.View2;
 import com.actionproject.springboot.repository.*;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -106,16 +110,30 @@ public class MyController {
     }
 
     @GetMapping("/notice")
-    public String notice(View view, Model mo){
-        List<View> list = vr.selectAll();
+    public String notice(View view, Model mo, @PageableDefault(page = 0, size = 10, sort = "noticeNumber", direction = Sort.Direction.DESC) Pageable pageable){
+        Page<View> list = vr.findAll(pageable);
+        int nowPage = list.getPageable().getPageNumber() + 1;
+        int startPage = Math.max(nowPage - 3, 1);
+        int endPage = Math.min(nowPage + 4, list.getTotalPages());
+
         mo.addAttribute("list", list);
+        mo.addAttribute("nowPage", nowPage);
+        mo.addAttribute("startPage", startPage);
+        mo.addAttribute("endPage", endPage);
 
         return "notice";}
 
     @GetMapping("/qna")
-    public String qna(View2 view, Model mo){
-        List<View2> list = vr2.selectAll();
-        mo.addAttribute("list", list);
+    public String qna(View2 view, Model mo, @PageableDefault(page = 0, size = 10, sort = "qnaNumber", direction = Sort.Direction.DESC) Pageable pageable){
+        Page<View2> list1 = vr2.findAll(pageable);
+        int nowPage = list1.getPageable().getPageNumber() + 1;
+        int startPage = Math.max(nowPage - 3, 1);
+        int endPage = Math.min(nowPage + 4, list1.getTotalPages());
+
+        mo.addAttribute("list", list1);
+        mo.addAttribute("nowPage", nowPage);
+        mo.addAttribute("startPage", startPage);
+        mo.addAttribute("endPage", endPage);
         return "qna";}
 
     @GetMapping("/view")
@@ -249,9 +267,16 @@ public class MyController {
     }
 
     @GetMapping("/bbs")
-    public String bbs(HttpSession httpSession, Model mo){
-        List<Registration> re = rg.selectRe();
-        mo.addAttribute("re", re);
+    public String bbs(HttpSession httpSession, Model mo, @PageableDefault(page = 0, size = 9, sort = "proNumber", direction = Sort.Direction.DESC) Pageable pageable){
+        Page<Registration> re1 = rg.findAll(pageable);
+
+        int nowPage = re1.getPageable().getPageNumber() + 1;
+        int startPage = Math.max(nowPage - 3, 1);
+        int endPage = Math.min(nowPage + 4, re1.getTotalPages());
+        mo.addAttribute("re", re1);
+        mo.addAttribute("nowPage", nowPage);
+        mo.addAttribute("startPage", startPage);
+        mo.addAttribute("endPage", endPage);
         httpSession.getAttribute("user");
         return "/bbs";}
 

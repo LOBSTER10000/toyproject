@@ -7,7 +7,7 @@
   <link rel="stylesheet" type="text/css" href="/css/qna/qna_main.css">
 
   <div class="container">
-    <div class="row" style="height:800px; width:100%;">
+    <div class="row" style="width:100%;">
       <div class="col-md-2">
         <div class="container box-side">
           <div class="box-image">
@@ -62,7 +62,8 @@
                 <tbody>
                 <tr th:each="bbs2 : ${list}">
                   <td th:text="${bbs2.qnaNumber}">1</td>
-                  <td><a th:href="@{/view2(qnaNumber=${bbs2.qnaNumber})}" th:text="${bbs2.bbsHead}" style="text-decoration: none; color: black;">2</a></td>
+                  <td><a th:href="@{/view2(qnaNumber=${bbs2.qnaNumber})}" th:text="${bbs2.bbsHead}"
+                         style="text-decoration: none; color: black;">2</a></td>
                   <td th:text="${bbs2.userId}">3</td>
                   <td th:text="${bbs2.bbsDate}">4</td>
                 </tr>
@@ -71,18 +72,17 @@
 
             </div>
             <!-- 페이징 -->
-            <div class="pager">
+            <div class="pager" style="margin-bottom: 15px;">
 
               <nav aria-label="...">
-                <ul class="pagination">
+                <ul class="pagination"  style="justify-content: center; margin-top: 35px;">
                   <li class="page-item disabled">
                     <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
                   </li>
-                  <li class="page-item"><a class="page-link" href="#">1</a></li>
-                  <li class="page-item active" aria-current="page">
-                    <a class="page-link" href="#">2</a>
+                  <li class="page-item" th:each="page : ${#numbers.sequence(startPage, endPage)}" th:class="${page == nowPage} ? 'active' : ''">
+                    <a class="page-link" href="#" th:if="${page != nowPage}" th:href="@{/qna(page=${page - 1})}" th:text="${page}"></a>
+                    <span th:if="${page == nowPage}" th:text="${page}" class="page-link active"></span>
                   </li>
-                  <li class="page-item"><a class="page-link" href="#">3</a></li>
                   <li class="page-item">
                     <a class="page-link" href="#">Next</a>
                   </li>
@@ -93,7 +93,7 @@
 
 
           </form>
-          <div th:if="${session.user} != null" style="text-align: center;">
+          <div th:if="${session.user} != null" style="text-align: center; margin-bottom: 30px;">
             <button style="background: #114da5; width:100px; height: 40px; border: none;">
               <a href="/write2" style="text-decoration: none; color:white;">
                 글쓰기</a></button>
