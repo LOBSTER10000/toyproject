@@ -1,6 +1,8 @@
 package com.actionproject.springboot.repository;
 
 import com.actionproject.springboot.entity.cs.View;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -14,6 +16,7 @@ import java.util.List;
 
 public interface ViewRepository extends JpaRepository<View, Long> {
 
+    Page<View> findByBbsHeadContaining(String searchKeyword, Pageable pageable);
 
     @Modifying
     @Transactional
@@ -39,4 +42,6 @@ public interface ViewRepository extends JpaRepository<View, Long> {
     @Transactional
     @Query(value = "delete from view where notice_number = :noticeNumber", nativeQuery = true)
     public int deleteNo(@Param("noticeNumber") Long noticeNumber);
+
+
 }

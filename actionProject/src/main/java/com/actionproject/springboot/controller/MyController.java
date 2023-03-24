@@ -110,8 +110,16 @@ public class MyController {
     }
 
     @GetMapping("/notice")
-    public String notice(View view, Model mo, @PageableDefault(page = 0, size = 10, sort = "noticeNumber", direction = Sort.Direction.DESC) Pageable pageable){
-        Page<View> list = vr.findAll(pageable);
+    public String notice(View view, Model mo,
+                         @PageableDefault(page = 0, size = 10, sort = "noticeNumber", direction = Sort.Direction.DESC) Pageable pageable
+                            , String searchKeyword){
+        Page<View> list = null;
+        if(searchKeyword == null){
+            list = vr.findAll(pageable);
+        }
+        else {
+            list = vr.findByBbsHeadContaining(searchKeyword, pageable);
+        }
         int nowPage = list.getPageable().getPageNumber() + 1;
         int startPage = Math.max(nowPage - 3, 1);
         int endPage = Math.min(nowPage + 4, list.getTotalPages());
@@ -124,8 +132,15 @@ public class MyController {
         return "notice";}
 
     @GetMapping("/qna")
-    public String qna(View2 view, Model mo, @PageableDefault(page = 0, size = 10, sort = "qnaNumber", direction = Sort.Direction.DESC) Pageable pageable){
-        Page<View2> list1 = vr2.findAll(pageable);
+    public String qna(View2 view, Model mo,
+                      @PageableDefault(page = 0, size = 10, sort = "qnaNumber", direction = Sort.Direction.DESC) Pageable pageable, String searchKeyword){
+        Page<View2> list1 = null;
+        if(searchKeyword == null){
+            list1 =  vr2.findAll(pageable);
+        }
+        else {
+            list1 = vr2.findByBbsHeadContaining(searchKeyword, pageable);
+        }
         int nowPage = list1.getPageable().getPageNumber() + 1;
         int startPage = Math.max(nowPage - 3, 1);
         int endPage = Math.min(nowPage + 4, list1.getTotalPages());
@@ -267,8 +282,16 @@ public class MyController {
     }
 
     @GetMapping("/bbs")
-    public String bbs(HttpSession httpSession, Model mo, @PageableDefault(page = 0, size = 9, sort = "proNumber", direction = Sort.Direction.DESC) Pageable pageable){
-        Page<Registration> re1 = rg.findAll(pageable);
+    public String bbs(HttpSession httpSession, Model mo, @PageableDefault(page = 0, size = 9, sort = "proNumber", direction = Sort.Direction.DESC) Pageable pageable,
+                      String searchKeyword){
+        Page<Registration> re1 = null;
+
+        if(searchKeyword == null){
+            re1 =  rg.findAll(pageable);
+        }
+        else {
+            re1 = rg.findByProHeadContaining(searchKeyword, pageable);
+        }
 
         int nowPage = re1.getPageable().getPageNumber() + 1;
         int startPage = Math.max(nowPage - 3, 1);

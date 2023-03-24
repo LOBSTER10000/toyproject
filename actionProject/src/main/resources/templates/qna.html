@@ -29,18 +29,11 @@
         <h1 style="letter-spacing: -2px; font-weight: 700; margin-top: 20px;"> Q&A </h1>
 
         <div class="realContent">
-          <form action="/search" method="post">
+          <form action="/qna" method="get">
             <!-- 검색 -->
             <div class="searchWrap row">
-              <div class="dpTableC wp30 col-md-3">
-                <select name="field" id="field" class="form-control">
-                  <option value="SA">전체</option>
-                  <option value="SB">제목</option>
-                  <option value="SD">내용</option>
-                </select>
-              </div>
               <div class="dpTableC p15 wp50 col-md-7">
-                <input type="text" name="searchTxt" id="searchTxt" class="form-control" placeholder="Search">
+                <input type="text" name="searchKeyword" id="searchTxt" class="form-control" placeholder="Search">
               </div>
               <div class="input-group-btn p15 wp20 col-md-2">
                 <button type="submit" class="btn-blue btn-lg fs15i wp100">검색</button>
@@ -80,7 +73,7 @@
                     <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
                   </li>
                   <li class="page-item" th:each="page : ${#numbers.sequence(startPage, endPage)}" th:class="${page == nowPage} ? 'active' : ''">
-                    <a class="page-link" href="#" th:if="${page != nowPage}" th:href="@{/qna(page=${page - 1})}" th:text="${page}"></a>
+                    <a class="page-link" href="#" th:if="${page != nowPage}" th:href="@{/qna(page=${page - 1}, searchKeyword=${param.searchKeyword})}" th:text="${page}"></a>
                     <span th:if="${page == nowPage}" th:text="${page}" class="page-link active"></span>
                   </li>
                   <li class="page-item">

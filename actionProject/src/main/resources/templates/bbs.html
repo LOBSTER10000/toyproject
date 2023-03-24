@@ -9,13 +9,13 @@
     <!-- 메인 상품 카테고리 창 -->
     <div class="album py-5 bg-light">
         <div class="container">
-            <form action="searchAll" method="post">
+            <form action="/bbs" method="get">
                 <div class="row">
                 <div class="col-md-6">
                     <h1 style="letter-spacing: -9px;">오늘의 인기 경매</h1>
                 </div>
                 <div class="col-md-6">
-                    <input type="text" name="searchTxt" id="searchTxt" placeholder="현재 카테고리 검색">
+                    <input type="text" name="searchKeyword" id="searchTxt" placeholder="현재 카테고리 검색">
                     <button class="btn btn-default fs16" type="submit"></button>
                 </div>
 
@@ -55,7 +55,7 @@
                     <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
                 </li>
                 <li class="page-item" th:each="page : ${#numbers.sequence(startPage, endPage)}" th:class="${page == nowPage} ? 'active' : ''">
-                    <a class="page-link" href="#" th:if="${page != nowPage}" th:href="@{/bbs(page=${page - 1})}" th:text="${page}"></a>
+                    <a class="page-link" href="#" th:if="${page != nowPage}" th:href="@{/bbs(page=${page - 1}, searchKeyword=${param.searchKeyword})}" th:text="${page}"></a>
                     <span th:if="${page == nowPage}" th:text="${page}" class="page-link active"></span>
                 </li>
                 <li class="page-item">

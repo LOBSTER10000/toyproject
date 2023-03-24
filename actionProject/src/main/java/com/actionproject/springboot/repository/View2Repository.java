@@ -2,6 +2,8 @@ package com.actionproject.springboot.repository;
 
 import com.actionproject.springboot.entity.cs.View;
 import com.actionproject.springboot.entity.cs.View2;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -37,4 +39,7 @@ public interface View2Repository extends JpaRepository<View2, Long> {
     @Transactional
     @Query(value = "delete from view2 where qna_number = :qnaNumber", nativeQuery = true)
     public int deleteNo(@Param("qnaNumber") Long qnaNumber);
+
+    Page<View2> findByBbsHeadContaining(String searchKeyword, Pageable pageable);
+
 }
