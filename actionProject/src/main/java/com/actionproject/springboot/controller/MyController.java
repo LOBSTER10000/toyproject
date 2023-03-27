@@ -206,8 +206,7 @@ public class MyController {
     public String registration2(Registration re, @RequestParam("files") MultipartFile[] files, Registration2 re2, HttpServletResponse response) {
         List<MultipartFile> imageFiles = new ArrayList<>();
         int fileCount = 0; // 업로드한 파일
-
-        int up = rg.insertRe(re.getProHead(), re.getProFrom(), re.getProStartMoney(), re.getProUnitMoney(), re.getProDirectMoney(), re.getProPresentMoney() ,re.getProContent(), re.getProDate(), re.getImagesExist(), re.getUserId());
+        int up = rg.insertRe2(re);
         System.out.println(re);
         System.out.println(up);
 

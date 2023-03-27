@@ -20,7 +20,10 @@ public class Registration {
     private int proStartMoney; // 시작가
     private int proPresentMoney; //현재가
     private int proUnitMoney; // 가격 단위
+
+    private int toDate; // 제한 날짜
     private int proDirectMoney; // 즉구가
+
     private String proContent; // 게시판 내용
 
     @Temporal(TemporalType.TIMESTAMP)
